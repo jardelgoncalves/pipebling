@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/jardelgoncalves/pipebling#readme",
   "dependencies": {
+    "axios": "^0.21.1",
     "config": "^3.3.3",
     "express": "^4.17.1",
     "express-pino-logger": "^5.0.0",
