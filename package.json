@@ -30,6 +30,7 @@
   "dependencies": {
     "config": "^3.3.3",
     "express": "^4.17.1",
+    "express-pino-logger": "^5.0.0",
     "module-alias": "^2.2.2",
     "mongoose": "^5.11.8",
     "pino": "^6.8.0"
