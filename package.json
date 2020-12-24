@@ -4,7 +4,7 @@
   "description": "An integration system between Pipedrive and Bling",
   "main": "src/index.js",
   "scripts": {
-    "dev": "nodemon",
+    "dev": "nodemon --watch 'src/' | pino-pretty -c",
     "lint": "eslint ./src --ext .js",
     "lint:fix": "eslint ./src --ext .js --fix",
     "test:e2e": "jest --projects ./test --runInBand",
@@ -30,7 +30,8 @@
   "dependencies": {
     "config": "^3.3.3",
     "express": "^4.17.1",
-    "module-alias": "^2.2.2"
+    "module-alias": "^2.2.2",
+    "pino": "^6.8.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
