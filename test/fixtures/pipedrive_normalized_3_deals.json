@@ -1,0 +1,14 @@
+{
+  "id": "5fe5ecd2923d94d627046d37",
+  "deals_ids": [1, 2, 4],
+  "period": "2020-12-24",
+  "totals_by_currency": {
+    "BRL": 240,
+    "EUR": 20
+  },
+  "totals_converted": {
+    "currency": "BRL",
+    "value": 367.16,
+    "value_formatted": "R$ 367,16"
+  }
+}
