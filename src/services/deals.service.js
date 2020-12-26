@@ -24,7 +24,7 @@ export class DealsService extends IService {
 
   async proccessingDealsOfToday() {
     try {
-      const period = formatDate(new Date('2020-12-24'));
+      const period = formatDate(new Date());
       const response = await this.pipedrive.fetchDeals(period);
 
       const [deals] = response.data;
