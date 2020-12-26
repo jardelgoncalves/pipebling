@@ -19,14 +19,17 @@ export class DealsService extends IService {
   constructor(serviceManager, pipedrive = new Pipedrive()) {
     super(serviceManager);
     this.pipedrive = pipedrive;
-    this.dealsRepository = serviceManager.repositories.DealsRepository;
+    this.DealsRepository = new serviceManager.repositories.DealsRepository();
   }
 
   async proccessingDealsOfToday() {
     try {
-      const startDate = formatDate(new Date('2020-12-24'));
-      const data = await this.pipedrive.fetchDeals(startDate);
+      const period = formatDate(new Date('2020-12-24'));
+      const response = await this.pipedrive.fetchDeals(period);
 
+      const [deals] = response.data;
+
+      const data = await this.DealsRepository.persist({ ...deals, period });
       return data;
     } catch (error) {
       logger.error(error);
