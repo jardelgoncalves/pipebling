@@ -1,5 +1,5 @@
 import express from 'express';
-import { NotImplementedException } from './NotImplementedException';
+import { NotImplementedException } from '../NotImplementedException';
 
 export class IServer {
   constructor(app = express) {

@@ -4,6 +4,7 @@ import { Pipedrive } from '@src/client/pipedrive';
 import logger from '@src/logger';
 import { InternalError } from '@src/utils/error/InternalError';
 import { formatDate } from '@src/utils/formatDate';
+import { IService } from '../utils/interfaces/IService';
 
 export class DealsProcessingInternalError extends InternalError {
   constructor(message, code) {
@@ -11,9 +12,14 @@ export class DealsProcessingInternalError extends InternalError {
   }
 }
 
-export class DealsService {
-  constructor(pipedrive = new Pipedrive()) {
+export class DealsService extends IService {
+  /**
+   * @param {import('.').ServiceManager} serviceManager service manager instance
+   */
+  constructor(serviceManager, pipedrive = new Pipedrive()) {
+    super(serviceManager);
     this.pipedrive = pipedrive;
+    this.dealsRepository = serviceManager.repositories.DealsRepository;
   }
 
   async proccessingDealsOfToday() {

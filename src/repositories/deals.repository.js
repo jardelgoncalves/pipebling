@@ -1,4 +1,4 @@
-import { IRepository } from '@src/utils/IRepository';
+import { IRepository } from '@src/utils/interfaces/IRepository';
 import * as models from '@src/models';
 
 export class DealsRepository extends IRepository {

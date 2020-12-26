@@ -1,3 +1,3 @@
-import { Deals } from './Deals';
+import { Deals } from './deals.model';
 
 export { Deals };
