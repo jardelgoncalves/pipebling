@@ -39,6 +39,8 @@ const schema = new Schema(
     toJSON: {
       transform: (_, ret) => {
         ret.id = ret._id;
+        ret.totals_by_currency = JSON.parse(ret.totals_by_currency);
+        ret.totals_converted = JSON.parse(ret.totals_converted);
 
         delete ret._id;
         delete ret.__v;
