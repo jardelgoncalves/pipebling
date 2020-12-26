@@ -1,5 +1,5 @@
 import { describe, it, expect } from '@jest/globals';
-import { IServer } from '../IServer';
+import { IServer } from '../interfaces/IServer';
 import { NotImplementedException } from '../NotImplementedException';
 
 describe('IServer unit test', () => {
