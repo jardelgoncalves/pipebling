@@ -2,9 +2,11 @@ import MongooseError from 'mongoose/lib/error/mongooseError';
 
 export class IRepository {
   /**
+   * @param {Array.<import('mongoose/lib/model')>} models All Models
    * @param {import('mongoose/lib/model')} model Model instance
    */
-  constructor(model) {
+  constructor(models, model) {
+    this.models = models;
     this.Model = model;
   }
 
