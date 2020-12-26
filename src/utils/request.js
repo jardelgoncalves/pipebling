@@ -13,4 +13,8 @@ export class Request {
   async post(url, data, config = {}) {
     return this[requisitioner].post(url, data, config);
   }
+
+  static isRequestError(error) {
+    return !!(error.response && error.response.status);
+  }
 }

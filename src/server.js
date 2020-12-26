@@ -1,8 +1,11 @@
 import './utils/moduleAlias';
 import expressPinoLogger from 'express-pino-logger';
-import { IServer } from './utils/IServer';
+import { IServer } from './utils/interfaces/IServer';
 import * as database from './database';
 import logger from './logger';
+import { dealsRouter } from './routes/deals.routes';
+import { ServiceManager } from './services';
+import * as repositories from './repositories';
 
 const setupGlobalMiddlewares = Symbol('setupGlobalMiddlewares');
 const setupDatabase = Symbol('setupDatabase');
@@ -34,7 +37,18 @@ export class Server extends IServer {
     );
   }
 
-  [setupControllers]() {}
+  [setupControllers]() {
+    const serviceManager = new ServiceManager(repositories);
+    this.addRoutes(
+      [
+        {
+          prefix: '/deals',
+          router: dealsRouter,
+        },
+      ],
+      serviceManager
+    );
+  }
 
   async [setupDatabase]() {
     await database.connect();

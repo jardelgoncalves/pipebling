@@ -7,6 +7,16 @@
     "logger": {
       "enabled": true,
       "level": "info"
+    },
+    "resources": {
+      "pipedrive": {
+        "url": "https://api.pipedrive.com/v1",
+        "token": "token-mock"
+      },
+      "bling": {
+        "url": "https://bling.com.br/Api/v2",
+        "token": "token-mock"
+      }
     }
   }
 }

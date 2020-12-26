@@ -5,6 +5,14 @@
     },
     "logger": {
       "enabled": false
+    },
+    "resources": {
+      "pipedrive": {
+        "token": "fake-token"
+      },
+      "bling": {
+        "token": "fake-token"
+      }
     }
   }
 }
