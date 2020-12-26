@@ -30,8 +30,7 @@ jobs:
       run: npm ci
 
     - name: Run all tests
-      # run: npm test
-      run: npm run test:unit
+      run: npm test
 
     # - name: Deploy on Heroku
     #   if: github.ref == 'refs/heads/master'
