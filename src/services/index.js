@@ -1,4 +1,5 @@
 import { DealsService } from './deals.service';
+import { LogService } from './log.service';
 
 export class ServiceManager {
   /**
@@ -10,5 +11,9 @@ export class ServiceManager {
 
   get dealsService() {
     return new DealsService(this);
+  }
+
+  get logService() {
+    return new LogService(this);
   }
 }
