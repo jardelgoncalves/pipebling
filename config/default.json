@@ -16,6 +16,10 @@
       "bling": {
         "url": "https://bling.com.br/Api/v2",
         "token": "token-mock"
+      },
+      "cron": {
+        "timezone": "America/Sao_Paulo",
+        "pattern": "00 55 23 * * *"
       }
     }
   }
