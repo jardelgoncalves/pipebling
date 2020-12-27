@@ -9,8 +9,9 @@ export const DealsController = (serviceManager) => {
   return {
     async index(req, res) {
       try {
-        const data = await service.proccessingDealsOfToday();
-        res.json(data);
+        await service.proccessingDealsOfToday();
+        const data = await service.DealsRepository.find({});
+        res.status(200).json(data);
       } catch (error) {
         logger.error(error);
         return errorResponse(res, error);
