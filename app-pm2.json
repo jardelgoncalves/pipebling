@@ -1,0 +1,14 @@
+{
+  "apps": [
+      {
+        "name": "api",
+        "script": "npm",
+        "args" : "start",
+        "env": {
+          "MONGODB_URL": "your mongourl",
+          "PIPEDRIVE_APIKEY": "your pipedrive api key",
+          "BLING_APIKEY": "your bling api key"
+        }
+      }
+  ]
+}
