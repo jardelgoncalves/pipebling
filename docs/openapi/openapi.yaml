@@ -17,7 +17,7 @@ tags:
   - name: Log
     description: Logs of application
 servers:
-  - url: 'ec2-18-188-127-16.us-east-2.compute.amazonaws.com'
+  - url: 'http://localhot:3333'
 paths:
   /deals:
     $ref: paths/deals.yaml
