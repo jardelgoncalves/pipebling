@@ -1,10 +1,20 @@
 {
-  "plugins": ["@babel/plugin-proposal-object-rest-spread"],
+  "plugins": [
+    "@babel/plugin-proposal-object-rest-spread",
+    ["module-resolver", {
+      "root": ["./"],
+      "alias": {
+        "@src": "./src",
+        "@test": "./test"
+      }
+    }]
+  ],
   "presets": [
     ["@babel/preset-env", {
       "targets": {
         "node": "12"
       }
     }]
-  ]
+  ],
+  "comments": false
 }
