@@ -58,3 +58,9 @@ npm run build
 ```
 npm start
 ```
+
+## To run the documentation
+Go to the `docs` directory and run:
+```
+npm i && npm start
+```
