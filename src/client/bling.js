@@ -1,3 +1,4 @@
+import { Log } from '@src/models';
 import { formatDate } from '@src/utils/formatDate';
 import * as HTTPUtil from '@src/utils/request';
 import config from 'config';
@@ -8,6 +9,7 @@ const blingConfig = config.get('App.resources.bling');
 const requisitioner = Symbol('requisitioner');
 const dealsToXml = Symbol('dealsToXml');
 const templateBlingOrderXml = Symbol('templateBlingOrderXml');
+const logError = Symbol('logError');
 export class Bling {
   constructor(request = new HTTPUtil.Request()) {
     this[requisitioner] = request;
@@ -24,7 +26,7 @@ export class Bling {
 
     try {
       // I could remove await and let requests run in the background
-      await Promise.all(
+      const results = await Promise.all(
         orders.map((order) =>
           this[requisitioner].post(
             `${blingConfig.get('url')}/pedido/json/`,
@@ -40,6 +42,16 @@ export class Bling {
           )
         )
       );
+
+      this[logError](results, timeline.period);
+
+      const idsWithError = results.reduce(
+        (acc, response, index) =>
+          response.data.retorno.erros ? [...acc, deals[index].id] : acc,
+        []
+      );
+
+      return idsWithError;
     } catch (error) {
       if (HTTPUtil.Request.isRequestError(error)) {
         throw new BlingResponseError(
@@ -72,13 +84,6 @@ export class Bling {
         <cliente>
           <nome>${person_name}</nome>
         </cliente>
-        <transporte>
-          <volumes>
-            <volume>
-              <servico>Pagamento online</servico>
-            </volume>
-          </volumes>
-        </transporte>
         <itens>
           <item>
             <codigo>${id}</codigo>
@@ -96,5 +101,18 @@ export class Bling {
         </parcelas>
       </pedido>
     `;
+  }
+
+  async [logError](requests = [], period) {
+    await Promise.all(
+      requests.map((r) => {
+        const log = new Log({
+          period,
+          context: 'create order in bling',
+          details: r.data.retorno.erros,
+        });
+        return log.save();
+      })
+    );
   }
 }
