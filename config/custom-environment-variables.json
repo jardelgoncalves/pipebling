@@ -3,6 +3,20 @@
     "port": "APP_PORT",
     "database": {
       "mongoUrl": "MONGODB_URL"
+    },
+    "resources": {
+      "pipedrive": {
+        "url": "PIPEDRIVE_BASE_URL",
+        "token": "PIPEDRIVE_APIKEY"
+      },
+      "bling": {
+        "url": "BLING_BASE_URL",
+        "token": "BLING_APIKEY"
+      },
+      "cron": {
+        "timezone": "CRON_TIMEZONE",
+        "pattern": "CRON_PATTERN"
+      }
     }
   }
 }
