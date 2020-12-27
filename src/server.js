@@ -4,6 +4,7 @@ import { IServer } from './utils/interfaces/IServer';
 import * as database from './database';
 import logger from './logger';
 import { dealsRouter } from './routes/deals.routes';
+import { logRouter } from './routes/log.routes';
 import { ServiceManager } from './services';
 import * as repositories from './repositories';
 
@@ -44,6 +45,10 @@ export class Server extends IServer {
         {
           prefix: '/deals',
           router: dealsRouter,
+        },
+        {
+          prefix: '/logs',
+          router: logRouter,
         },
       ],
       serviceManager
