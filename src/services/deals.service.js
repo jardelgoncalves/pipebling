@@ -33,12 +33,18 @@ export class DealsService extends IService {
       const period = formatDate(new Date());
       const response = await this.pipedrive.fetchDeals(period);
       const exists = await this.DealsRepository.findOne({ period });
-      const ids = exists ? exists.deals_ids.map((deal) => deal.id) : [];
+      const ids = exists ? exists.deals_ids.map((id) => id) : [];
 
       const [timeline] = response.data;
 
-      const data = await this.DealsRepository.persist({ ...timeline, period });
-      await this.bling.createOrder({ ...timeline, period }, ids);
+      const ignoreIds = await this.bling.createOrder(
+        { ...timeline, period },
+        ids
+      );
+      const data = await this.DealsRepository.persist(
+        { ...timeline, period },
+        ignoreIds
+      );
 
       return data;
     } catch (error) {
