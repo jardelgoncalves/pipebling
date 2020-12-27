@@ -1,0 +1,17 @@
+type: object
+properties:
+  id:
+    description: ObjectId of MongoDB
+    type: string
+  period:
+    description: date in deals YYYY-MM-DD standard
+    type: string
+    example: "2020-12-25"
+  context:
+    description: determines where the log was generated, in this case, in the requests for the bling
+    type: string
+    example: "create order in bling"
+  details:
+    type: array
+    items:
+      $ref: ./LogDetail.yaml
