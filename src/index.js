@@ -1,6 +1,7 @@
 import config from 'config';
 import { Server } from './server';
 import logger from './logger';
+import { cron } from './cron/cronDeals';
 
 const EXIT_STATUS = Object.freeze({
   FAILURE: 1,
@@ -25,6 +26,8 @@ process.on('uncaughtException', (error) => {
   try {
     const server = new Server(process.env.PORT || config.get('App.port'));
     await server.init();
+
+    cron.start();
     server.start();
     NODE_EXIT_SIGNALS.map((signal) =>
       process.on(signal, async () => {
