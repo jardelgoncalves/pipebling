@@ -1,10 +1,11 @@
 /* eslint-disable max-classes-per-file */
 
+import { Bling } from '@src/client/bling';
 import { Pipedrive } from '@src/client/pipedrive';
 import logger from '@src/logger';
 import { InternalError } from '@src/utils/error/InternalError';
 import { formatDate } from '@src/utils/formatDate';
-import { IService } from '../utils/interfaces/IService';
+import { IService } from '@src/utils/interfaces/IService';
 
 export class DealsProcessingInternalError extends InternalError {
   constructor(message, code) {
@@ -16,9 +17,14 @@ export class DealsService extends IService {
   /**
    * @param {import('.').ServiceManager} serviceManager service manager instance
    */
-  constructor(serviceManager, pipedrive = new Pipedrive()) {
+  constructor(
+    serviceManager,
+    pipedrive = new Pipedrive(),
+    bling = new Bling()
+  ) {
     super(serviceManager);
     this.pipedrive = pipedrive;
+    this.bling = bling;
     this.DealsRepository = new serviceManager.repositories.DealsRepository();
   }
 
@@ -26,10 +32,14 @@ export class DealsService extends IService {
     try {
       const period = formatDate(new Date());
       const response = await this.pipedrive.fetchDeals(period);
+      const exists = await this.DealsRepository.findOne({ period });
+      const ids = exists ? exists.deals_ids.map((deal) => deal.id) : [];
 
-      const [deals] = response.data;
+      const [timeline] = response.data;
 
-      const data = await this.DealsRepository.persist({ ...deals, period });
+      const data = await this.DealsRepository.persist({ ...timeline, period });
+      await this.bling.createOrder({ ...timeline, period }, ids);
+
       return data;
     } catch (error) {
       logger.error(error);
