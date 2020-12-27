@@ -1,0 +1,11 @@
+type: object
+properties:
+  currency:
+    description: Currency abbreviation registered in deals
+    type: string
+  value:
+    description: Amount recorded in deal
+    type: number
+  value_formatted:
+    description: Deals value formatted
+    type: string

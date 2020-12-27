@@ -1,0 +1,5 @@
+type: object
+properties:
+  erro:
+    type: object
+    example: {"cod": 30, "msg": "Pedido ja cadastrado no sistema - Um pedido com o mesmo hash ja encontra-se cadastrado (24)"}

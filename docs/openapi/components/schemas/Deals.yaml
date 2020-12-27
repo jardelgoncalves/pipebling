@@ -1,0 +1,19 @@
+type: object
+properties:
+  id:
+    description: ObjectId of MongoDB
+    type: string
+  period:
+    description: date in deals YYYY-MM-DD standard
+    type: string
+    example: "2020-12-25"
+  deals_ids:
+    description: Deals ID array on pipedrive
+    type: array
+  totals_by_currency:
+    description: Currency recorded in each deals on pipedrive
+    type: object
+    example: {"BRL": 20, "EUR": 10}
+  totals_converted:
+    $ref: ./TotalsConverted.yaml
+
