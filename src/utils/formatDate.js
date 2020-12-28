@@ -1,8 +1,9 @@
-export const formatDate = (date = new Date(), BR = false) => {
-  const monthRef = date.getUTCMonth() + 1;
-  const year = date.getUTCFullYear();
-  const month = monthRef < 10 ? `0${monthRef}` : `${monthRef}`;
-  const day = date.getUTCDate();
+import config from 'config';
 
-  return BR ? `${day}/${month}/${year}` : `${year}-${month}-${day}`;
+export const formatDate = (date = new Date(), BR = false) => {
+  const data = date
+    .toLocaleString('pt-BR', { timezone: config.get('App.cron.timezone') })
+    .split(',')[0];
+
+  return BR ? data : data.split('/').reverse().join('-');
 };
