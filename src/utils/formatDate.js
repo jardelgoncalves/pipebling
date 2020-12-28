@@ -9,5 +9,7 @@ export const formatDate = (date = new Date(), BR = false) => {
 
   const [dd, mm, yyyy] = brData.split('/');
 
-  return BR ? brData : [yyyy, mm, dd].join('-');
+  const addZero = (n) => (n <= 9 ? `0${n}` : n);
+
+  return BR ? brData : [yyyy, addZero(mm), addZero(dd)].join('-');
 };
