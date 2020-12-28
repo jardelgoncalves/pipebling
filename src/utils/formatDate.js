@@ -1,15 +1,17 @@
 import config from 'config';
 
 export const formatDate = (date = new Date(), BR = false) => {
-  const brData = date
+  const data = date
     .toLocaleString('pt-BR', {
       timezone: config.get('App.resources.cron.timezone'),
     })
     .split(',')[0];
 
-  const [dd, mm, yyyy] = brData.split('/');
+  const [mm, dd, yyyy] = data.split('/');
 
-  const addZero = (n) => (n <= 9 ? `0${n}` : n);
+  const addZero = (n) => (Number(n) <= 9 ? `0${n}` : n);
 
-  return BR ? brData : [yyyy, addZero(mm), addZero(dd)].join('-');
+  return BR
+    ? [addZero(dd), addZero(mm), yyyy].join('/')
+    : [yyyy, addZero(mm), addZero(dd)].join('-');
 };
