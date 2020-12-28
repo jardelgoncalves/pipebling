@@ -105,14 +105,16 @@ export class Bling {
 
   async [logError](requests = [], period) {
     await Promise.all(
-      requests.map((r) => {
-        const log = new Log({
-          period,
-          context: 'create order in bling',
-          details: r.data.retorno.erros,
-        });
-        return log.save();
-      })
+      requests
+        .filter((r) => !!r.data.retorno.erros)
+        .map((r) => {
+          const log = new Log({
+            period,
+            context: 'create order in bling',
+            details: r.data.retorno.erros,
+          });
+          return log.save();
+        })
     );
   }
 }
