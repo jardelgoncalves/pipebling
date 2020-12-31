@@ -9,7 +9,7 @@
 check the documentation before testing the API
 <br/>
 <br/>
-**API**: http://ec2-18-188-127-16.us-east-2.compute.amazonaws.com/
+**API**: http://ec2-18-188-127-16.us-east-2.compute.amazonaws.com/deals
 <br />
 **Documentation**: http://ec2-18-188-127-16.us-east-2.compute.amazonaws.com:8080
 <br />
