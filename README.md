@@ -5,16 +5,6 @@
   </p>
 </p>
 
-### **Temporary links**
-check the documentation before testing the API
-<br/>
-<br/>
-**API**: http://ec2-18-188-127-16.us-east-2.compute.amazonaws.com/
-<br />
-**Documentation**: http://ec2-18-188-127-16.us-east-2.compute.amazonaws.com:8080
-<br />
-<br />
-
 ## Install the dependencies
 - Using npm
   ```bash
